@@ -1,0 +1,3 @@
+{
+    "mongoURI": "mongodb+srv://marcopradodev:marcopradodev@chatbot-db.y1gp89g.mongodb.net/chats?retryWrites=true&w=majority"
+}
