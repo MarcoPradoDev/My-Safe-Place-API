@@ -9,6 +9,10 @@ const BotSchema = new Schema({
     user_id: {
         type: String, 
         required: false
+    },
+    session_id: {
+        type: String, 
+        required: false
     }
 })
 
