@@ -5,6 +5,10 @@ const BotSchema = new Schema({
     age: {
         type: String,
         required: false
+    },
+    user_id: {
+        type: String, 
+        required: false
     }
 })
 
