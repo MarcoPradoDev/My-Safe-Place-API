@@ -17,6 +17,7 @@ app.use(express.json())
 
 app.post('/', (req, res) => {
     // const {age} = req.body
+    console.log('req => ', req)
     const newBot = new Bot({
         ...req.body
     }) 
