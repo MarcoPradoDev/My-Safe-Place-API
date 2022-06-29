@@ -16,11 +16,8 @@ const Bot = require('./src/models/BotSchema')
 app.use(express.json())
 
 app.post('/', async (req, res) => {
-    // const {age} = req.body
-    // console.log('req => ', req)
+    console.log('body => ', req.body)
     const headers = req.headers
-    console.log('headers 1=> ', req.headers)
-    // console.log('headers 2=> ', req.get('kHeaders'))
     const sessionId = headers['x-watson-session-id'] 
     console.log('sessionId => ', sessionId)
     const filter = {sessionId: sessionId}
@@ -33,11 +30,12 @@ app.post('/', async (req, res) => {
             ...req.body
         }) 
         doc = await newBot.save();
+        console.log('new doc => ', doc)
     } else {
         const update = {...req.body}
         doc = await Bot.findOneAndUpdate(filter, update)
+        console.log('doc saved => ', doc)
     }
-    console.log('doc saved => ', doc)
     res.json(doc)
 })
 
