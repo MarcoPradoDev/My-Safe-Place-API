@@ -17,7 +17,8 @@ app.use(express.json())
 
 app.post('/', async (req, res) => {
     // const {age} = req.body
-    const sessionId = req['x-watson-session-id'];
+    const headers = req['[Symbol(kHeaders)]'];
+    const sessionId = headers['x-watson-session-id'] 
     console.log('sessionId => ', sessionId)
     const filter = {sessionId: sessionId}
     let doc = await Bot.findOne(filter).exec()
