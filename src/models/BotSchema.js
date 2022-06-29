@@ -2,12 +2,16 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
 
 const BotSchema = new Schema({
-    age: {
+    question_1_1: {
         type: String,
         required: false
     },
-    genere: {
+    question_1_2: {
         type: String,
+        required: false
+    },
+    question_1_3: {
+        type: String, 
         required: false
     },
     sessionId: {

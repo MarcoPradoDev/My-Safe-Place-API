@@ -15,16 +15,28 @@ const Bot = require('./src/models/BotSchema')
 
 app.use(express.json())
 
-app.post('/', (req, res) => {
+app.post('/', async (req, res) => {
     // const {age} = req.body
-    console.log('req => ', req)
-    const newBot = new Bot({
-        ...req.body
-    }) 
-    newBot.save().then(item => res.json(item))
+    const sessionId = req['x-watson-session-id'];
+    console.log('sessionId => ', sessionId)
+    const filter = {sessionId: sessionId}
+    let doc = await Bot.findOne(filter).exec()
+    console.log('doc => ', doc)
+    // Exist chat
+    if (doc === null){
+        const newBot = new Bot({
+            sessionId: sessionId,
+            ...req.body
+        }) 
+        doc = await newBot.save();
+    } else {
+        const update = {...req.body}
+        doc = await Bot.findOneAndUpdate(filter, update)
+    }
+    console.log('doc saved => ', doc)
+    res.json(doc)
 })
 
 app.listen(process.env.PORT || 5000, ()  => {
     console.log('uri => ', db)
-   
 })
