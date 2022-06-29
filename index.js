@@ -17,7 +17,8 @@ app.use(express.json())
 
 app.post('/', async (req, res) => {
     // const {age} = req.body
-    const headers = req['[Symbol(kHeaders)]'];
+    const headers = req['Symbol(kHeaders)'];
+    console.log('headers => ', headers)
     const sessionId = headers['x-watson-session-id'] 
     console.log('sessionId => ', sessionId)
     const filter = {sessionId: sessionId}
