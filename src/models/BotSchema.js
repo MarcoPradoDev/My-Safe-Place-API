@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const BotSchema = new Schema({
     age: {
-        type: Number,
+        type: String,
         required: false
     }
 })

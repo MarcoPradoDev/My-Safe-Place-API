@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 const config = require('config');
 
 // Connect to DB
@@ -15,9 +16,9 @@ const Bot = require('./src/models/BotSchema')
 app.use(express.json())
 
 app.post('/', (req, res) => {
-    const {age} = req.body
+    // const {age} = req.body
     const newBot = new Bot({
-        age: age
+        ...req.body
     }) 
     newBot.save().then(item => res.json(item))
 })
