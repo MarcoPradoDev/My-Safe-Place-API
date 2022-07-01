@@ -16,7 +16,7 @@ const Bot = require('./src/models/BotSchema')
 app.use(express.json())
 
 app.post('/', async (req, res) => {
-    console.log('body => ', req.body)
+    console.log('body => ', req)
     // const headers = req.headers
     // const sessionId = headers['x-watson-session-id'] 
     // console.log('sessionId => ', sessionId)
