@@ -17,22 +17,26 @@ app.use(express.json())
 
 app.post('/', async (req, res) => {
     console.log('body => ', req.body)
-    const headers = req.headers
-    const sessionId = headers['x-watson-session-id'] 
-    console.log('sessionId => ', sessionId)
+    // const headers = req.headers
+    // const sessionId = headers['x-watson-session-id'] 
+    // console.log('sessionId => ', sessionId)
+    const {data, sessionId} = req.body
     const filter = {sessionId: sessionId}
     let doc = await Bot.findOne(filter).exec()
-    console.log('doc => ', doc)
+    // console.log('doc => ', doc)
     // Exist chat
+
     if (doc === null){
         const newBot = new Bot({
             sessionId: sessionId,
-            ...req.body
+            data: [data]
         }) 
         doc = await newBot.save();
         console.log('new doc => ', doc)
     } else {
-        const update = {...req.body}
+        var historyChat = docData
+        historyChat.push(data)
+        const update = {data: historyChat}
         doc = await Bot.findOneAndUpdate(filter, update)
         console.log('doc saved => ', doc)
     }
