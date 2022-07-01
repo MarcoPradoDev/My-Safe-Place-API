@@ -1,6 +1,5 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const cors = require('cors');
 const config = require('config');
 
 // Connect to DB
@@ -12,11 +11,11 @@ mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true, serverAp
 
 const app = express()
 const Bot = require('./src/models/BotSchema')
-app.use(cors)
 app.use(express.json())
 
-app.post('/', async (req, res) => {
-    console.log('body => ', req)
+app.post('/chats', async (req, res) => {
+    console.log('headers => ', req.headers)
+    console.log('body => ', req.body)
     // const headers = req.headers
     // const sessionId = headers['x-watson-session-id'] 
     // console.log('sessionId => ', sessionId)
