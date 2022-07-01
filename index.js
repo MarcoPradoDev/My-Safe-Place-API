@@ -1,3 +1,4 @@
+const cors = require('cors');
 const express = require('express');
 const mongoose = require('mongoose');
 const config = require('config');
@@ -10,6 +11,7 @@ mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true, serverAp
 
 
 const app = express()
+app.use(cors());
 const Bot = require('./src/models/BotSchema')
 app.use(express.json())
 
