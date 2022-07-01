@@ -1,6 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const cors = require('cors');
 const config = require('config');
 
 // Connect to DB
@@ -12,7 +12,7 @@ mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true, serverAp
 
 const app = express()
 const Bot = require('./src/models/BotSchema')
-
+app.use(cors)
 app.use(express.json())
 
 app.post('/', async (req, res) => {
